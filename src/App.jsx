@@ -10,10 +10,10 @@ function App() {
   return (
     <>
       <Home />
-      <Login />
-      <Manageusers />
-      <Profile />
       <Register />
+      <Login />
+      <Profile />
+      <Manageusers />
     </>
   )
 }
