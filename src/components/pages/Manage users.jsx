@@ -3,7 +3,7 @@ import React from 'react';
 function Manageusers() {
   return (
     <>
-    test test
+   Manage users
     </>
   );
 }
