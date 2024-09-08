@@ -1,13 +1,19 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import Home from './components/pages/Home'
+import Login from './components/pages/Login'
+import Manageusers from './components/pages/Manage users'
+import Profile from './components/pages/Profile'
+import Register from './components/pages/Register'
 
 function App() {
   return (
     <>
-      <p className="h4 text-warning">
-      
-      </p>
+      <Home />
+      <Login />
+      <Manageusers />
+      <Profile />
+      <Register />
     </>
   )
 }
