@@ -1,0 +1,9 @@
+.navbar {
+  background: linear-gradient(90deg, rgb(181, 225, 255) 0%, rgb(203, 247, 220) 100%);
+  /* width: 100%; */
+}
+
+/* .navbar:hover {
+  border-bottom: 4px solid #191616;
+  transition: all 0.2s ease-out;
+} */
