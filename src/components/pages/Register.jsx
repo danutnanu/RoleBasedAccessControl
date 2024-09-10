@@ -3,7 +3,9 @@ import React from 'react';
 function Register() {
   return (
     <>
-    Register
+      <div className='text-center h1'>
+        Register page
+      </div>
     </>
   );
 }

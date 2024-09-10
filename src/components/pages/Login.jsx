@@ -3,7 +3,11 @@ import React from 'react';
 function Login() {
   return (
     <>
-   Login
+      <div>
+        <p className='h1 text-center'>
+          Login page
+        </p>
+      </div>
     </>
   );
 }

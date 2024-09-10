@@ -4,7 +4,7 @@ function Messages() {
   return (
     <>
    <div className='m-2 text-center border border-danger rounded'>
-    <p className='h5'>Messages</p>
+    <p className='h6'>Messages page</p>
    </div>
     </>
   );
