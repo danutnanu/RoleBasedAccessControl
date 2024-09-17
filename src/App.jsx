@@ -8,14 +8,14 @@ import Login from './components/pages/Login'
 import Manageusers from './components/pages/Manage users'
 import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
-import Messages from './components/Messages'
+import Message from './components/Message'
 
 function App() {
   return (
     <>
       <Router>
         <Navbar />
-        <Messages />
+        <Message />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
