@@ -4,10 +4,15 @@ import Form from 'react-bootstrap/Form';
 
 
 function Register() {
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Submit button clicked');
+  };
   return (
     <>
     <p className='h4 text-center'>Register</p>
-    <Form className="w-50 mx-auto mb-1 border border-dark rounded">
+    <Form onSubmit={handleSubmit} className="w-50 mx-auto mb-1 border border-dark rounded">
       <Form.Group className="my-2 px-5" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
