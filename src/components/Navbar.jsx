@@ -17,8 +17,8 @@ function Navigation() {
             <Nav.Link as={Link} to="/register">Register</Nav.Link>
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+            <Nav.Link as={Link} to="/manageusers">Manage Users</Nav.Link>
             <Nav.Link href="#link">Logout</Nav.Link>
-            <Nav.Link href="#link">Manage users</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
