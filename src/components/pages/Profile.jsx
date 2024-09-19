@@ -1,44 +1,73 @@
-import React from 'react';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 function Profile() {
-  const user = {
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    roles: ['admin', 'moderator'],
-    permissions: ['read', 'write', 'delete']
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log('Submit button clicked');
+    }
+
+    setValidated(true);
   };
+
   return (
     <>
-      <h1 className="text-center">Profile</h1>
-      <div className="row border border-dark">
-        <div className="col-md-6">
-          <h2>User Information</h2>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-        </div>
-        <div className="col-md-6">
-          <h2>Role Information</h2>
-          <p>Roles: {user.roles.join(', ')}</p>
-          <p>Permissions: {user.permissions.join(', ')}</p>
-        </div>
-      </div>
-      
-      <div className="row border border-dark">
-        <div className="col-md-12">
-          <h2>Account Settings</h2>
-          <form>
-            <div className="form-group">
-              <label>Password</label>
-              <input type="password" className="form-control" />
-            </div>
-            <div className="form-group">
-              <label>Email</label>
-              <input type="email" className="form-control" />
-            </div>
-            <button type="submit" className="btn btn-primary">Update</button>
-          </form>
-        </div>
-      </div>
+      <p className='h4 text-center'>Profile</p>
+      <Form noValidate validated={validated} onSubmit={handleSubmit} className="w-75 mx-auto mb-1 border border-dark rounded">
+        <Row className="mb-3">
+          <Form.Group as={Col} md="4" controlId="validationCustom01">
+            <Form.Label>First name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="First name"
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" controlId="validationCustom02">
+            <Form.Label>Last name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Last name"
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="6" controlId="validationCustom03">
+            <Form.Label>City</Form.Label>
+            <Form.Control type="text" placeholder="City" required />
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid city.
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="3" controlId="validationCustom04">
+            <Form.Label>Mobile</Form.Label>
+            <Form.Control type="text" placeholder="Mobile" required />
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid state.
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Form.Group className="mb-3">
+          <Form.Check
+            required
+            label="Agree to terms and conditions"
+            feedback="You must agree before submitting."
+            feedbackType="invalid"
+          />
+        </Form.Group>
+        <Button type="submit">Submit form</Button>
+      </Form>
     </>
   );
 }
