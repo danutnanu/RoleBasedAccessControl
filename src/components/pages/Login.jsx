@@ -4,7 +4,8 @@ import Form from 'react-bootstrap/Form';
 function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submit button clicked');
+    const formData = event.target.elements;
+    console.log(formData);
   };
   return (
     <>
@@ -23,9 +24,6 @@ function Login() {
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
 
-        <Form.Group className="mb-2 px-5" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
         <Button className='mx-5 mb-2 px-5' variant="primary" type="submit">
           Submit
         </Button>
