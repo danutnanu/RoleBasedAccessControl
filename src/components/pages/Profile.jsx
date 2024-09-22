@@ -12,7 +12,8 @@ function Profile() {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      console.log('Submit button clicked');
+      const formData = event.target.elements;
+      console.log(formData);
     }
 
     setValidated(true);
@@ -58,14 +59,6 @@ function Profile() {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-        <Form.Group className="mb-3">
-          <Form.Check
-            required
-            label="Agree to terms and conditions"
-            feedback="You must agree before submitting."
-            feedbackType="invalid"
-          />
-        </Form.Group>
         <Button type="submit">Submit form</Button>
       </Form>
     </>
