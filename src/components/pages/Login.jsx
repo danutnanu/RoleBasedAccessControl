@@ -4,8 +4,9 @@ import Form from 'react-bootstrap/Form';
 function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = event.target.elements;
-    console.log(formData);
+    let email = event.target.elements[0].value;
+    let password = event.target.elements[1].value;
+    console.log({email, password});
   };
   return (
     <>
