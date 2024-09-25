@@ -8,14 +8,20 @@ function Profile() {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      const formData = event.target.elements;
+    } else {
+      const formData = {
+        firstName: form.elements.validationCustom01.value,
+        lastName: form.elements.validationCustom02.value,
+        city: form.elements.validationCustom03.value,
+        mobile: form.elements.validationCustom04.value,
+      };
       console.log(formData);
     }
-
     setValidated(true);
   };
 
