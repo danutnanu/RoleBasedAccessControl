@@ -7,11 +7,13 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = event.target.elements;
-    console.log(formData);
-    // const email = event.target.elements.formBasicEmail.value;
-    // const password = event.target.elements.formBasicPassword.value;
-    // console.log(email, password);
+    // const formData = event.target.elements;
+    // console.log(formData);
+    const email = event.target.formBasicEmail.value;
+    const password = event.target.formBasicPassword.value;
+    const password2 = event.target.formBasicPassword2.value;
+    console.log(email, password, password2);
+    console.log(event.target);
   };
   return (
     <>
@@ -31,7 +33,7 @@ function Register() {
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
 
-        <Form.Group className="mb-2 px-5" controlId="formBasicPassword">
+        <Form.Group className="mb-2 px-5" controlId="formBasicPassword2">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
