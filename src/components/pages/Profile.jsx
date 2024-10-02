@@ -28,8 +28,8 @@ function Profile() {
   return (
     <>
       <p className='h4 text-center'>Profile</p>
-      <Form noValidate validated={validated} onSubmit={handleSubmit} className="w-75 mx-auto mb-1 border border-dark rounded">
-        <Row className="mb-3">
+      <Form noValidate validated={validated} onSubmit={handleSubmit} className="w-50 mx-auto mb-1 border border-dark rounded">
+        <Row className="mb-3 my-2 px-5">
           <Form.Group as={Col} md="4" controlId="validationCustom01">
             <Form.Label>First name</Form.Label>
             <Form.Control
@@ -49,7 +49,7 @@ function Profile() {
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Row>
-        <Row className="mb-3">
+        <Row className="mb-3 my-2 px-5">
           <Form.Group as={Col} md="6" controlId="validationCustom03">
             <Form.Label>City</Form.Label>
             <Form.Control type="text" placeholder="City" required />
@@ -65,7 +65,7 @@ function Profile() {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-        <Button type="submit">Submit form</Button>
+        <Button type="submit" className='mx-5 mb-3'>Submit form</Button>
       </Form>
     </>
   );
