@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -9,8 +8,13 @@ import ManageUsers from './components/pages/ManageUsers'
 import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
 import Message from './components/Message'
+import { initializeUsers } from './utils/userStorage';
 
 function App() {
+  useEffect(() => {
+    initializeUsers();
+  }, []);
+
   return (
     <>
       <Router>
