@@ -18,7 +18,7 @@ function Login() {
       console.log('Login successful', user);
       setErrorMessage('');
       localStorage.setItem('currentUser', JSON.stringify(user));
-      // Here you would typically set the user as logged in and redirect
+
     } else {
       console.log('Login failed');
       setErrorMessage('Invalid email or password');
