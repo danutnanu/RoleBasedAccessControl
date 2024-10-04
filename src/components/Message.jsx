@@ -1,13 +1,19 @@
 import React from 'react';
+import { useMessage } from '../context/MessageContext';
 
-function Messages() {
+function Message() {
+  const { message } = useMessage();
+  const bgColor = message.type === 'error' ? 'bg-danger' : 'bg-info';
+
   return (
     <>
-      <div className='my-1 mt-5 text-center'>
-        <p className='h6'>Registered successfully, you can now login</p>
-      </div>
+      {message.text && (
+        <div className={`my-1 text-center ${bgColor} text-white rounded w-50 mx-auto`}>
+          <p className='h6'>{message.text}</p>
+        </div>
+      )}
     </>
   );
 }
 
-export default Messages;
+export default Message;
