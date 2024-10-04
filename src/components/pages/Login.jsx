@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { getUsers } from '../../utils/userStorage';
+import { useMessage } from '../../context/MessageContext';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const { setMessage } = useMessage();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,12 +17,11 @@ function Login() {
 
     if (user) {
       console.log('Login successful', user);
-      setErrorMessage('');
+      setMessage({ text: 'Login successful', type: 'success' });
       localStorage.setItem('currentUser', JSON.stringify(user));
-
     } else {
       console.log('Login failed');
-      setErrorMessage('Invalid email or password');
+      setMessage({ text: 'Invalid email or password', type: 'error' });
     }
   };
 
@@ -50,8 +50,6 @@ function Login() {
             required
           />
         </Form.Group>
-
-        {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
 
         <Button className='mx-5 mb-2 px-5' variant="primary" type="submit">
           Submit
