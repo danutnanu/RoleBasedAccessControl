@@ -9,6 +9,7 @@ import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
 import Message from './components/Message'
 import { initializeUsers } from './utils/userStorage';
+import { MessageProvider } from './context/MessageContext';
 
 function App() {
   useEffect(() => {
@@ -16,7 +17,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <MessageProvider>
       <Router>
         <Navbar />
         <Message />
@@ -28,7 +29,7 @@ function App() {
           <Route path='/manageusers' element={<ManageUsers />} />
         </Routes>
       </Router>
-    </>
+    </MessageProvider>
   );
 };
 
