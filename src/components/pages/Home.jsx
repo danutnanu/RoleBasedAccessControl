@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <section id="home">
-        <div className='px-5 pb-5 bg-secondary-subtle'>
+        <div className='px-5 pb-5 mt-5 bg-secondary-subtle'>
           <p className='h4 fw-bold text-center mb-0 rounded'>Role Based Access Control</p>
           <div className='text-start mx-5 p-5 pt-2 border border-dark rounded'>
             <p className='fw-bold text-center text-danger mb-4 mt-0'>HOME PAGE</p>
