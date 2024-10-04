@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { getUsers } from '../../utils/userStorage';
-import { useMessage } from '../../context/MessageContext';
+import { useMessage } from '../Message'; // Updated import path
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -19,6 +19,7 @@ function Login() {
       console.log('Login successful', user);
       setMessage({ text: 'Login successful', type: 'success' });
       localStorage.setItem('currentUser', JSON.stringify(user));
+      // TODO: Add navigation to home page or dashboard
     } else {
       console.log('Login failed');
       setMessage({ text: 'Invalid email or password', type: 'error' });
