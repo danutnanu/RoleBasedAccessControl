@@ -1,18 +1,41 @@
-import React from 'react';
-import { useMessage } from '../context/MessageContext';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
-function Message() {
-  const { message } = useMessage();
-  const bgColor = message.type === 'error' ? 'bg-danger' : 'bg-info';
+const MessageContext = createContext();
+
+export function MessageProvider({ children }) {
+  const [message, setMessage] = useState({ text: '', type: '' });
 
   return (
-    <>
-      {message.text && (
-        <div className={`my-1 text-center ${bgColor} text-white rounded w-50 mx-auto`}>
-          <p className='h6'>{message.text}</p>
-        </div>
-      )}
-    </>
+    <MessageContext.Provider value={{ message, setMessage }}>
+      {children}
+    </MessageContext.Provider>
+  );
+}
+
+export function useMessage() {
+  return useContext(MessageContext);
+}
+
+function Message() {
+  const { message, setMessage } = useMessage();
+  const bgColor = message.type === 'error' ? 'bg-danger' : 'bg-success';
+
+  useEffect(() => {
+    if (message.text) {
+      const timer = setTimeout(() => {
+        setMessage({ text: '', type: '' });
+      }, 10000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message, setMessage]);
+
+  if (!message.text) return null;
+
+  return (
+    <div className={`message ${bgColor} text-white rounded w-100 mx-auto text-center`} style={{padding: '10px'}}>
+      <p className='h6 mb-0'>{message.text}</p>
+    </div>
   );
 }
 
