@@ -3,30 +3,3 @@
   width: 100%;
 }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.message-container {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  padding: 10px 0;
-  background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white background */
-}
-
-.content-container {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-/* Ensure Navbar is above the message */
-.navbar {
-  position: relative;
-  z-index: 1001;
-}
-
