@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { getUsers } from '../../utils/userStorage';
-import { useMessage } from '../Message'; // Updated import path
+import { useMessage } from '../Message';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,37 +31,43 @@ function Login() {
   };
 
   return (
-    <>
-      <p className='h4 text-center'>Login</p>
-      <Form onSubmit={handleSubmit} className="w-50 mx-auto mb-1 border border-dark rounded">
-        <Form.Group className="mb-3 mx-5 mt-2" controlId="email">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
+    <Container fluid className="d-flex align-items-center justify-content-center vh-100">
+      <Row className="justify-content-center w-100">
+        <Col xs={12} sm={10} md={8} lg={6} xl={4}>
+          <h4 className='text-center mb-4'>Login</h4>
+          <Form onSubmit={handleSubmit} className="border rounded p-4 bg-light">
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-        <Form.Group className="mb-3 mx-5" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-        <Button className='mx-5 mb-2 px-5' variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-      <p className='text-center'>Don't have an account? <a href="/register">Register</a></p>
-    </>
+            <div className="d-grid gap-2">
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </div>
+          </Form>
+          <p className='text-center mt-3'>Don't have an account? <Link to="/register">Register</Link></p>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
