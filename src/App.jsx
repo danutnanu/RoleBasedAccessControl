@@ -8,7 +8,7 @@ import ManageUsers from './components/pages/ManageUsers'
 import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
 import { initializeUsers } from './utils/userStorage';
-import './App.css'
+
 
 function App() {
   useEffect(() => {
@@ -18,12 +18,12 @@ function App() {
   return (
     <MessageProvider>
       <Router>
-        <div className="app-container">
+        <div className="d-flex flex-column min-vh-100">
           <Navbar />
-          <div className="message-container">
+          <div className="container-fluid mt-3">
             <Message />
           </div>
-          <div className="content-container">
+          <main className="flex-grow-1 container-fluid mt-3">
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
@@ -31,11 +31,11 @@ function App() {
               <Route path='/profile' element={<Profile />} />
               <Route path='/manageusers' element={<ManageUsers />} />
             </Routes>
-          </div>
+          </main>
         </div>
       </Router>
     </MessageProvider>
   );
-};
+}
 
 export default App;
