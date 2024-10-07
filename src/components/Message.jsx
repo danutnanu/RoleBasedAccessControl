@@ -33,7 +33,16 @@ function Message() {
   if (!message.text) return null;
 
   return (
-    <div className={`message ${bgColor} text-white rounded w-100 mx-0 mt-4 p-2 mb-0 text-center`}>
+    <div 
+      className={`message ${bgColor} text-white w-100 p-2 mb-0 text-center`}
+      style={{
+        position: 'fixed',
+        top: '38px',
+        left: 0,
+        right: 0,
+        zIndex: 1030,
+      }}
+    >
       <p className='h6 mb-0'>{message.text}</p>
     </div>
   );
