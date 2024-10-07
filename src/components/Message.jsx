@@ -24,7 +24,7 @@ function Message() {
     if (message.text) {
       const timer = setTimeout(() => {
         setMessage({ text: '', type: '' });
-      }, 10000);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
@@ -33,7 +33,7 @@ function Message() {
   if (!message.text) return null;
 
   return (
-    <div className={`message ${bgColor} text-white rounded w-100 mx-auto text-center`} style={{padding: '10px'}}>
+    <div className={`message ${bgColor} text-white rounded w-100 mx-0 mt-4 p-2 mb-0 text-center`}>
       <p className='h6 mb-0'>{message.text}</p>
     </div>
   );
