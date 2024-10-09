@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -7,11 +8,19 @@ import Col from 'react-bootstrap/Col';
 import { getUsers } from '../../utils/userStorage';
 import { useMessage } from '../Message';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App'; // Import UserContext from App.jsx
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setMessage } = useMessage();
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  // Add this useEffect hook to log the user state whenever it changes
+  useEffect(() => {
+    console.log('Current user in state:', user);
+  }, [user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +32,12 @@ function Login() {
       console.log('Login successful', user);
       setMessage({ text: 'Login successful', type: 'success' });
       localStorage.setItem('currentUser', JSON.stringify(user));
-      // TODO: Add navigation to home page or dashboard
+      
+      // Add user to state
+      setUser(user);
+
+      // Navigate to home page or dashboard
+      navigate('/');
     } else {
       console.log('Login failed');
       setMessage({ text: 'Invalid email or password', type: 'error' });
