@@ -19,7 +19,7 @@ function Navigation() {
           <img src="/public/favicon.ico" alt="logo" width="30" height="24" className="d-inline-block align-text-top m-1" />
           <a className="badge text-bg-light text-wrap fst-italic p-1 border border-info" >RBAC</a>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end text-center me-3">
             <Nav className="p-0">
               <Nav.Link as={Link} to="/" onClick={handleLinkClick}>Home</Nav.Link>
               <Nav.Link as={Link} to="/register" onClick={handleLinkClick}>Register</Nav.Link>
