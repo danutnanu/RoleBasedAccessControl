@@ -34,7 +34,6 @@ function Navigation() {
               <Nav.Link as={Link} to="/" onClick={handleLinkClick}>Home</Nav.Link>
               {!user ? (
                 <>
-                  <Nav.Link as={Link} to="/register" onClick={handleLinkClick}>Register</Nav.Link>
                   <Nav.Link as={Link} to="/login" onClick={handleLinkClick}>Login</Nav.Link>
                 </>
               ) : (
