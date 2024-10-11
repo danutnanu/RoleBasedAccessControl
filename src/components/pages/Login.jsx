@@ -13,7 +13,7 @@ import { UserContext } from '../../App'; // Import UserContext from App.jsx
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setMessage } = useMessage();
+  const { showMessage } = useMessage(); // Changed from setMessage to showMessage
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ function Login() {
 
     if (user) {
       console.log('Login successful', user);
-      setMessage({ text: 'Login successful', type: 'success' });
+      showMessage('Login successful', 'success'); // Changed to showMessage
       localStorage.setItem('currentUser', JSON.stringify(user));
       
       // Add user to state
@@ -40,12 +40,12 @@ function Login() {
       navigate('/');
     } else {
       console.log('Login failed');
-      setMessage({ text: 'Invalid email or password', type: 'error' });
+      showMessage('Invalid email or password', 'error'); // Changed to showMessage
     }
   };
 
   return (
-    <Container fluid className="d-flex align-items-center justify-content-center vh-100">
+    <Container fluid className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '60px' }}> {/* Added marginTop */}
       <Row className="justify-content-center w-100">
         <Col xs={12} sm={10} md={8} lg={6} xl={4}>
           <h4 className='text-center mb-4'>Login</h4>
