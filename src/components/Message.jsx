@@ -1,51 +1,67 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-
+import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
+import './Message.css'; 
+// Create the context
 const MessageContext = createContext();
 
+// Provider component
 export function MessageProvider({ children }) {
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [message, setMessage] = useState(null);
+
+  const showMessage = (text, type = 'info') => {
+    setMessage({ text, type });
+  };
+
+  const clearMessage = () => {
+    setMessage(null);
+  };
 
   return (
-    <MessageContext.Provider value={{ message, setMessage }}>
+    <MessageContext.Provider value={{ message, showMessage, clearMessage }}>
       {children}
+      <Message />
     </MessageContext.Provider>
   );
 }
 
+// Hook for using the message context
 export function useMessage() {
   return useContext(MessageContext);
 }
 
+// Message display component
 function Message() {
-  const { message, setMessage } = useMessage();
-  const bgColor = message.type === 'error' ? 'bg-danger' : 'bg-success';
+  const { message, clearMessage } = useMessage();
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
+  const messageRef = useRef(null);
 
   useEffect(() => {
-    if (message.text) {
+    if (message) {
+      setIsLeaving(false);
+      // Force a reflow before adding the 'show' class
+      messageRef.current.offsetHeight;
+      setIsVisible(true);
       const timer = setTimeout(() => {
-        setMessage({ text: '', type: '' });
-      }, 5000);
-
+        setIsLeaving(true);
+        setTimeout(() => {
+          setIsVisible(false);
+          clearMessage();
+        }, 1000);
+      }, 3000); 
       return () => clearTimeout(timer);
     }
-  }, [message, setMessage]);
+  }, [message, clearMessage]);
 
-  if (!message.text) return null;
+  if (!message) return null;
 
   return (
     <div 
-      className={`message ${bgColor} text-white w-100 p-2 mb-0 text-center`}
-      style={{
-        position: 'fixed',
-        top: '38px',
-        left: 0,
-        right: 0,
-        zIndex: 1030,
-      }}
+      ref={messageRef}
+      className={`message ${message.type} ${isVisible ? 'show' : ''} ${isLeaving ? 'leaving' : ''} mt-3 text-center`}
     >
-      <p className='h6 mb-0'>{message.text}</p>
+      {message.text}
     </div>
   );
 }
 
-export default Message;
+export default MessageProvider;
