@@ -57,7 +57,7 @@ function Message() {
   return (
     <div 
       ref={messageRef}
-      className={`message ${message.type} ${isVisible ? 'show' : ''} ${isLeaving ? 'leaving' : ''} mt-3 text-center`}
+      className={`message ${message.type} ${isVisible ? 'show' : ''} ${isLeaving ? 'leaving' : ''} mt-4 text-center`}
     >
       {message.text}
     </div>
