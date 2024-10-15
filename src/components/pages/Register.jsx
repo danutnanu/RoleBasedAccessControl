@@ -5,16 +5,37 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
+import { useMessage } from '../Message'; // Import the useMessage hook
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const { showMessage } = useMessage(); // Get the showMessage function from context
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email, password, confirmPassword);
-    // TODO: Add registration logic here
+    
+    // Check if the user already exists
+    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const userExists = existingUsers.find(user => user.email === email);
+
+    if (userExists) {
+      showMessage('User already exists with this email address.', 'error');
+      return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      showMessage('Passwords do not match.', 'error');
+      return;
+    }
+
+    // Register the user
+    const newUser = { email, password };
+    existingUsers.push(newUser);
+    localStorage.setItem('users', JSON.stringify(existingUsers));
+    showMessage('Registration successful!', 'success');
   };
 
   return (
