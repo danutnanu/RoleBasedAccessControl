@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useMessage } from '../Message'; // Import the useMessage hook
 
 function Register() {
@@ -12,6 +12,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const { showMessage } = useMessage(); // Get the showMessage function from context
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,10 +23,9 @@ function Register() {
 
     if (userExists) {
       showMessage('User already exists with this email address.', 'error');
-      // Optionally, you can clear the fields after a delay
       setTimeout(() => {
         resetFormFields(); // Reset the form fields
-      }, 2000); // Adjust the delay as needed (2000 ms = 2 seconds)
+      }, 2000);
       return;
     }
 
@@ -44,6 +44,9 @@ function Register() {
 
     // Reset all fields after successful registration
     resetFormFields(); // Reset the form fields
+
+    // Redirect to the login page
+    navigate('/login'); // Redirect to the login page
   };
 
   // Function to reset all form fields
