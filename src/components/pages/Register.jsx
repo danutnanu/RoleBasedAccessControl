@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -22,12 +22,17 @@ function Register() {
 
     if (userExists) {
       showMessage('User already exists with this email address.', 'error');
+      // Optionally, you can clear the fields after a delay
+      setTimeout(() => {
+        resetFormFields(); // Reset the form fields
+      }, 2000); // Adjust the delay as needed (2000 ms = 2 seconds)
       return;
     }
 
     // Check if passwords match
     if (password !== confirmPassword) {
       showMessage('Passwords do not match.', 'error');
+      resetPasswordFields(); // Reset the password fields
       return;
     }
 
@@ -36,7 +41,28 @@ function Register() {
     existingUsers.push(newUser);
     localStorage.setItem('users', JSON.stringify(existingUsers));
     showMessage('Registration successful!', 'success');
+
+    // Reset all fields after successful registration
+    resetFormFields(); // Reset the form fields
   };
+
+  // Function to reset all form fields
+  const resetFormFields = () => {
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  };
+
+  // Function to reset only password fields
+  const resetPasswordFields = () => {
+    setPassword('');
+    setConfirmPassword('');
+  };
+
+  // useEffect to log the state whenever it changes
+  useEffect(() => {
+    console.log('Current fields:', { email, password, confirmPassword });
+  }, [email, password, confirmPassword]); // Log whenever any of these fields change
 
   return (
     <Container fluid className="d-flex align-items-center justify-content-center vh-100">
