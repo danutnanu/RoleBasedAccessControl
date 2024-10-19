@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useMessage } from '../Message'; // Import the useMessage hook
 
 function Profile() {
   const [validated, setValidated] = useState(false);
@@ -11,8 +12,27 @@ function Profile() {
     firstName: '',
     lastName: '',
     city: '',
-    mobile: ''
+    country: ''
   });
+  const { showMessage } = useMessage(); // Get the showMessage function from context
+
+  // Replace with the actual logged-in user's email
+  const loggedInUserEmail = 'jo@example.com'; // This should come from your authentication context or state
+
+  // Load existing user data from local storage when the component mounts
+  useEffect(() => {
+    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const currentUser = existingUsers.find(user => user.email === loggedInUserEmail);
+
+    if (currentUser) {
+      setFormData({
+        firstName: currentUser.firstName || '',
+        lastName: currentUser.lastName || '',
+        city: currentUser.city || '',
+        country: currentUser.country || ''
+      });
+    }
+  }, [loggedInUserEmail]);
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -28,8 +48,24 @@ function Profile() {
     if (form.checkValidity() === false) {
       event.stopPropagation();
     } else {
-      console.log(formData);
-      // TODO: Add profile update logic here
+      // Save updated profile data to local storage
+      const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+      const currentUserIndex = existingUsers.findIndex(user => user.email === loggedInUserEmail);
+
+      if (currentUserIndex !== -1) {
+        // Update the user data with the new form data
+        existingUsers[currentUserIndex] = {
+          ...existingUsers[currentUserIndex],
+          ...formData
+        };
+
+        // Save updated users back to local storage
+        localStorage.setItem('users', JSON.stringify(existingUsers));
+        showMessage('Profile updated successfully!', 'success');
+        console.log('Updated user data:', existingUsers[currentUserIndex]); // Log updated user data
+      } else {
+        showMessage('User not found!', 'error');
+      }
     }
     setValidated(true);
   };
@@ -77,17 +113,17 @@ function Profile() {
                 Please provide a valid city.
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="mobile">
-              <Form.Label>Mobile</Form.Label>
+            <Form.Group className="mb-3" controlId="country">
+              <Form.Label>Country</Form.Label>
               <Form.Control 
                 type="text" 
-                placeholder="Mobile" 
+                placeholder="Country" 
                 required 
-                value={formData.mobile}
+                value={formData.country}
                 onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">
-                Please provide a valid mobile number.
+                Please provide a valid country.
               </Form.Control.Feedback>
             </Form.Group>
             <div className="d-grid gap-2">
