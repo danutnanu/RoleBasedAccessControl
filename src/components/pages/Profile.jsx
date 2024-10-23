@@ -1,46 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useMessage } from '../Message'; // Import the useMessage hook
+import { useMessage } from '../Message'; 
+import {Link} from 'react-router-dom';
+import {UserContext} from '../../App';
 
 function Profile() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
   const [validated, setValidated] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    city: '',
-    country: ''
-  });
-  const { showMessage } = useMessage(); // Get the showMessage function from context
+  const { showMessage } = useMessage();
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const loggedInUserEmail = user && user.email;
 
-  // Replace with the actual logged-in user's email
-  const loggedInUserEmail = 'jo@example.com'; // This should come from your authentication context or state
-
-  // Load existing user data from local storage when the component mounts
+  
   useEffect(() => {
-    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-    const currentUser = existingUsers.find(user => user.email === loggedInUserEmail);
-
-    if (currentUser) {
-      setFormData({
-        firstName: currentUser.firstName || '',
-        lastName: currentUser.lastName || '',
-        city: currentUser.city || '',
-        country: currentUser.country || ''
-      });
-    }
-  }, [loggedInUserEmail]);
-
-  const handleChange = (event) => {
-    const { id, value } = event.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [id]: value
-    }));
-  };
+    console.log('Current user in state:', user);
+  }, [user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,11 +39,16 @@ function Profile() {
         // Update the user data with the new form data
         existingUsers[currentUserIndex] = {
           ...existingUsers[currentUserIndex],
-          ...formData
+          firstName,
+          lastName,
+          city,
+          country
         };
 
         // Save updated users back to local storage
         localStorage.setItem('users', JSON.stringify(existingUsers));
+        localStorage.setItem('currentUser', JSON.stringify(existingUsers[currentUserIndex]));
+
         showMessage('Profile updated successfully!', 'success');
         console.log('Updated user data:', existingUsers[currentUserIndex]); // Log updated user data
       } else {
@@ -83,8 +71,8 @@ function Profile() {
                   required
                   type="text"
                   placeholder="First name"
-                  value={formData.firstName}
-                  onChange={handleChange}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
@@ -94,8 +82,8 @@ function Profile() {
                   required
                   type="text"
                   placeholder="Last name"
-                  value={formData.lastName}
-                  onChange={handleChange}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
@@ -106,8 +94,8 @@ function Profile() {
                 type="text" 
                 placeholder="City" 
                 required 
-                value={formData.city}
-                onChange={handleChange}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
               />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid city.
@@ -119,8 +107,8 @@ function Profile() {
                 type="text" 
                 placeholder="Country" 
                 required 
-                value={formData.country}
-                onChange={handleChange}
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
               />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid country.
