@@ -8,6 +8,7 @@ import ManageUsers from './components/pages/ManageUsers'
 import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
 import { initializeUsers } from './utils/userStorage';
+import { AuthProvider } from './AuthContext';
 
 // Create a new UserContext
 export const UserContext = React.createContext();
@@ -25,24 +26,26 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <MessageProvider>
-        <Router>
-          <div className="d-flex flex-column min-vh-100">
-            <Navbar />
-            <main className="flex-grow-1 container-fluid mt-3">
-              <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/manageusers' element={<ManageUsers />} />
-              </Routes>
-            </main>
-          </div>
-        </Router>
-      </MessageProvider>
-    </UserContext.Provider>
+    <AuthProvider>
+      <UserContext.Provider value={{ user, setUser }}>
+        <MessageProvider>
+          <Router>
+            <div className="d-flex flex-column min-vh-100">
+              <Navbar />
+              <main className="flex-grow-1 container-fluid mt-3">
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/login' element={<Login />} />
+                  <Route path='/register' element={<Register />} />
+                  <Route path='/profile' element={<Profile />} />
+                  <Route path='/manageusers' element={<ManageUsers />} />
+                </Routes>
+              </main>
+            </div>
+          </Router>
+        </MessageProvider>
+      </UserContext.Provider>
+    </AuthProvider>
   );
 }
 
