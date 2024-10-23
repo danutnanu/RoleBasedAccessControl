@@ -42,7 +42,14 @@ function Navigation() {
                   {user.role === 'admin' && (
                     <Nav.Link as={Link} to="/manageusers" onClick={handleLinkClick}>Manage Users</Nav.Link>
                   )}
-                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                    <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                  {user.firstName ? (
+                    <span className="navbar-text ms-5">Hi,  {user.firstName}!</span> // Greeting with first name
+                  ) : user.name ? (
+                    <span className="navbar-text ms-5">Hi,  {user.name.split(' ')[0]}!</span> // Greeting with name
+                  ) : (
+                    <span className="navbar-text"></span> // No greeting if no name or first name
+                  )}
                 </>
               )}
             </Nav>
