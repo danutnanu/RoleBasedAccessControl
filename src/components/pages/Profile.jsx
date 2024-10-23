@@ -6,8 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useMessage } from '../Message'; 
-import {Link} from 'react-router-dom';
-import {UserContext} from '../../App';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 function Profile() {
   const [firstName, setFirstName] = useState('');
@@ -20,10 +20,20 @@ function Profile() {
   const navigate = useNavigate();
   const loggedInUserEmail = user && user.email;
 
-  
   useEffect(() => {
     console.log('Current user in state:', user);
-  }, [user]);
+    // Load user data from local storage when the component mounts
+    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const currentUserIndex = existingUsers.findIndex(user => user.email === loggedInUserEmail);
+    
+    if (currentUserIndex !== -1) {
+      const currentUser = existingUsers[currentUserIndex];
+      setFirstName(currentUser.firstName);
+      setLastName(currentUser.lastName);
+      setCity(currentUser.city);
+      setCountry(currentUser.country);
+    }
+  }, [user, loggedInUserEmail]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,6 +58,12 @@ function Profile() {
         // Save updated users back to local storage
         localStorage.setItem('users', JSON.stringify(existingUsers));
         localStorage.setItem('currentUser', JSON.stringify(existingUsers[currentUserIndex]));
+
+        // Update state with new values
+        setFirstName(existingUsers[currentUserIndex].firstName);
+        setLastName(existingUsers[currentUserIndex].lastName);
+        setCity(existingUsers[currentUserIndex].city);
+        setCountry(existingUsers[currentUserIndex].country);
 
         showMessage('Profile updated successfully!', 'success');
         console.log('Updated user data:', existingUsers[currentUserIndex]); // Log updated user data
