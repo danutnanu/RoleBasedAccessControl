@@ -11,8 +11,7 @@ function Home() {
         <div className='px-5 pt-5 pb-5 mt-0 mx-0 bg-secondary-subtle'>
           <p className='h4 fw-bold text-center mb-0 rounded'>Role Based Access Control</p>
           <div className='text-start mx-5 p-5 pt-2 border border-dark rounded'>
-            <p className='fw-bold text-center text-danger mb-4 mt-0'>HOME PAGE</p>
-            <p className='fw-bold text-center text-danger mb-4 mt-0'>"This content is visible to all, without any restrictions. The page is public and can be viewed without logging in."</p>
+            <p className='fw-bold text-center text-danger mb-4 mt-3'>"This content is visible to all, without any restrictions. The page is public and can be viewed without logging in."</p>
             <p className='h6 fw-bold'>Project Overview</p>
             <p className='text-start'>This project implements a Role-Based Access Control (RBAC) system using React. The system allows for managing user roles and controlling access to various parts of the application based on their assigned permissions.</p>
             <p className='h6 fw-bold'>Technologies Used:</p>
