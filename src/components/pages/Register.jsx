@@ -6,13 +6,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useMessage } from '../Message'; // Import the useMessage hook
+import { addUser, initializeUsers } from '../../utils/userStorage'; // Correct path to userStorage.js
 
-function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+const Register = () => {
+  const [email, setEmail] = useState(''); // Initialize to an empty string
+  const [password, setPassword] = useState(''); // Initialize to an empty string
+  const [confirmPassword, setConfirmPassword] = useState(''); // Initialize to an empty string
   const { showMessage } = useMessage(); // Get the showMessage function from context
   const navigate = useNavigate(); // Initialize useNavigate
+
+  // Initialize users on component mount
+  useEffect(() => {
+    initializeUsers();
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,9 +43,8 @@ function Register() {
     }
 
     // Register the user
-    const newUser = { email, password };
-    existingUsers.push(newUser);
-    localStorage.setItem('users', JSON.stringify(existingUsers));
+    const newUser = { id: Date.now(), email, password, role: 'user' }; // Add a unique ID and role
+    addUser(newUser); // Use the addUser function to add the new user
     showMessage('Registration successful!', 'success');
 
     // Reset all fields after successful registration
@@ -51,15 +56,15 @@ function Register() {
 
   // Function to reset all form fields
   const resetFormFields = () => {
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
+    setEmail(''); // Reset to an empty string
+    setPassword(''); // Reset to an empty string
+    setConfirmPassword(''); // Reset to an empty string
   };
 
   // Function to reset only password fields
   const resetPasswordFields = () => {
-    setPassword('');
-    setConfirmPassword('');
+    setPassword(''); // Reset to an empty string
+    setConfirmPassword(''); // Reset to an empty string
   };
 
   // useEffect to log the state whenever it changes
@@ -78,7 +83,7 @@ function Register() {
               <Form.Control
                 type="email"
                 placeholder="Enter email"
-                value={email}
+                value={email} // Controlled input
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -92,7 +97,7 @@ function Register() {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                value={password}
+                value={password} // Controlled input
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
@@ -103,7 +108,7 @@ function Register() {
               <Form.Control
                 type="password"
                 placeholder="Confirm Password"
-                value={confirmPassword}
+                value={confirmPassword} // Controlled input
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
