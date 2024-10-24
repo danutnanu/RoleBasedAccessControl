@@ -6,34 +6,28 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useMessage } from '../Message'; 
-import { Link } from 'react-router-dom';
-import { UserContext } from '../../App';
+import { UserContext } from '../../App'; // Adjust the import path based on your context file
 
 function Profile() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
+  const { user, setUser } = useContext(UserContext); // Use context to get the current user data
+  const [firstName, setFirstName] = useState(user?.firstName || ''); // Initialize to current user's first name or empty string
+  const [lastName, setLastName] = useState(user?.lastName || ''); // Initialize to current user's last name or empty string
+  const [city, setCity] = useState(user?.city || ''); // Initialize to current user's city or empty string
+  const [country, setCountry] = useState(user?.country || ''); // Initialize to current user's country or empty string
   const [validated, setValidated] = useState(false);
   const { showMessage } = useMessage();
-  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  const loggedInUserEmail = user && user.email;
 
   useEffect(() => {
     console.log('Current user in state:', user);
     // Load user data from local storage when the component mounts
-    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-    const currentUserIndex = existingUsers.findIndex(user => user.email === loggedInUserEmail);
-    
-    if (currentUserIndex !== -1) {
-      const currentUser = existingUsers[currentUserIndex];
-      setFirstName(currentUser.firstName);
-      setLastName(currentUser.lastName);
-      setCity(currentUser.city);
-      setCountry(currentUser.country);
+    if (user) {
+      setFirstName(user.firstName || ''); // Set to empty string if undefined
+      setLastName(user.lastName || ''); // Set to empty string if undefined
+      setCity(user.city || ''); // Set to empty string if undefined
+      setCountry(user.country || ''); // Set to empty string if undefined
     }
-  }, [user, loggedInUserEmail]);
+  }, [user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,34 +36,22 @@ function Profile() {
       event.stopPropagation();
     } else {
       // Save updated profile data to local storage
-      const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-      const currentUserIndex = existingUsers.findIndex(user => user.email === loggedInUserEmail);
+      const updatedUser = {
+        ...user,
+        firstName,
+        lastName,
+        city,
+        country
+      };
 
-      if (currentUserIndex !== -1) {
-        // Update the user data with the new form data
-        existingUsers[currentUserIndex] = {
-          ...existingUsers[currentUserIndex],
-          firstName,
-          lastName,
-          city,
-          country
-        };
+      // Save updated user data to local storage
+      localStorage.setItem('currentUser', JSON.stringify(updatedUser));
 
-        // Save updated users back to local storage
-        localStorage.setItem('users', JSON.stringify(existingUsers));
-        localStorage.setItem('currentUser', JSON.stringify(existingUsers[currentUserIndex]));
+      // Update the user context state
+      setUser(updatedUser); // Update the context state with the new user data
 
-        // Update state with new values
-        setFirstName(existingUsers[currentUserIndex].firstName);
-        setLastName(existingUsers[currentUserIndex].lastName);
-        setCity(existingUsers[currentUserIndex].city);
-        setCountry(existingUsers[currentUserIndex].country);
-
-        showMessage('Profile updated successfully!', 'success');
-        console.log('Updated user data:', existingUsers[currentUserIndex]); // Log updated user data
-      } else {
-        showMessage('User not found!', 'error');
-      }
+      showMessage('Profile updated successfully!', 'success');
+      console.log('Updated user data:', updatedUser); // Log updated user data
     }
     setValidated(true);
   };
