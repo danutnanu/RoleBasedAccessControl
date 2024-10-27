@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useMessage } from '../Message'; 
 import { UserContext } from '../../App'; // Adjust the import path based on your context file
+import { getUsers, updateUser } from '../../utils/userStorage'; // Import updateUser function
 
 function Profile() {
   const { user, setUser } = useContext(UserContext); // Use context to get the current user data
@@ -44,14 +45,22 @@ function Profile() {
         country
       };
 
+      // Update the user in the list of users
+      const users = getUsers();
+      const userIndex = users.findIndex(u => u.id === updatedUser.id);
+      if (userIndex !== -1) {
+        users[userIndex] = updatedUser;
+        localStorage.setItem('users', JSON.stringify(users));
+      }
+
       // Save updated user data to local storage
       localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+      console.log('Updated user saved to localStorage:', updatedUser);
 
       // Update the user context state
       setUser(updatedUser); // Update the context state with the new user data
 
       showMessage('Profile updated successfully!', 'success');
-      console.log('Updated user data:', updatedUser); // Log updated user data
     }
     setValidated(true);
   };

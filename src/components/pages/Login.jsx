@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -13,39 +13,32 @@ import { UserContext } from '../../App'; // Import UserContext from App.jsx
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { showMessage } = useMessage(); // Changed from setMessage to showMessage
-  const { user, setUser } = useContext(UserContext);
+  const { showMessage } = useMessage();
+  const { setUser } = useContext(UserContext); // Correctly use setUser from context
   const navigate = useNavigate();
-
-  // Add this useEffect hook to log the user state whenever it changes
-  useEffect(() => {
-    console.log('Current user in state:', user);
-  }, [user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const users = getUsers();
+    console.log('Users retrieved from localStorage:', users);
+
     const user = users.find(u => u.email === email && u.password === password);
 
     if (user) {
       console.log('Login successful', user);
-      showMessage('Login successful', 'success'); // Changed to showMessage
+      showMessage('Login successful', 'success');
       localStorage.setItem('currentUser', JSON.stringify(user));
-      
-      // Add user to state
       setUser(user);
-
-      // Navigate to home page or dashboard
       navigate('/');
     } else {
       console.log('Login failed');
-      showMessage('Invalid email or password', 'error'); // Changed to showMessage
+      showMessage('Invalid email or password', 'error');
     }
   };
 
   return (
-    <Container fluid className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '60px' }}> {/* Added marginTop */}
+    <Container fluid className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '60px' }}>
       <Row className="justify-content-center w-100">
         <Col xs={12} sm={10} md={8} lg={6} xl={4}>
           <h4 className='text-center mb-4'>Login</h4>
