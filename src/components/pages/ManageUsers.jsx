@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Container, Table, Dropdown, Button } from 'react-bootstrap';
+import { UserContext } from '../../App'; // Import UserContext
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]); // State to hold the list of users
+  const { user, setUser } = useContext(UserContext); // Use context to get/set current user
 
   // Function to fetch users from local storage
   const fetchUsers = () => {
@@ -21,7 +23,14 @@ const ManageUsers = () => {
       user.id === userId ? { ...user, role: newRole } : user
     );
     setUsers(updatedUsers);
-    localStorage.setItem('users', JSON.stringify(updatedUsers)); // Update local storage
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+    if (user && user.id === userId) {
+      const updatedUser = { ...user, role: newRole };
+      setUser(updatedUser);
+      localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+      console.log('Updated user:', updatedUser);
+    }
   };
 
   // Function to handle user deletion
