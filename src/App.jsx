@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'
-import { MessageProvider } from './components/Message' // Changed this line
+import { MessageProvider } from './components/Message'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
 import ManageUsers from './components/pages/ManageUsers'
@@ -18,12 +18,15 @@ function App() {
 
   useEffect(() => {
     initializeUsers();
-    // Check if there's a user in localStorage on app load
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
   }, []);
+
+  useEffect(() => {
+    console.log('Current user in App:', user);
+  }, [user]);
 
   return (
     <AuthProvider>
