@@ -8,9 +8,9 @@ function Home() {
   return (
     <div>
       <section id="home">
-        <div className='px-5 pt-5 pb-5 mt-0 mx-0 bg-secondary-subtle'>
-          <p className='h4 fw-bold text-center mb-0 rounded'>Role Based Access Control</p>
-          <div className='text-start mx-5 p-5 pt-2 border border-dark rounded'>
+        <div className='px-5 pt-5 pb-5 mt-0 mx-0'>
+          <p className='h4 fw-bold text-center mb-2 rounded'>Role Based Access Control</p>
+          <div className='text-start mx-5 p-5 pt-2 border border-dark rounded bg-light'>
             <p className='fw-bold text-center text-danger mb-4 mt-3'>"This content is visible to all, without any restrictions. The page is public and can be viewed without logging in."</p>
             <p className='h6 fw-bold'>Project Overview</p>
             <p className='text-start'>This project implements a Role-Based Access Control (RBAC) system using React. The system allows for managing user roles and controlling access to various parts of the application based on their assigned permissions.</p>
@@ -48,8 +48,8 @@ function Home() {
       {user && (
         <>
           <section id="user">
-            <div className='px-5 p-5 bg-success-subtle'>
-              <div className='text-start mx-5 p-5 pt-2 border border-dark rounded'>
+            <div className='px-5 p-5'>
+              <div className='text-start mx-5 p-5 pt-2 border border-dark rounded bg-secondary-subtle'>
                 <p className='fw-bold text-center text-danger mb-4 mt-0'>USER PAGE</p>
                 <div>
                   <h2>Welcome, User!</h2>
@@ -62,8 +62,8 @@ function Home() {
 
           {(user.role.toLowerCase() === 'moderator' || user.role.toLowerCase() === 'admin') && (
             <section id="moderator">
-              <div className='px-5 p-5 bg-warning-subtle'>
-                <div className='text-start mx-5 p-5 pt-2 border border-dark rounded'>
+              <div className='px-5 p-5'>
+                <div className='text-start mx-5 p-5 pt-2 border border-dark rounded bg-primary-subtle'>
                   <p className='fw-bold text-center text-danger mb-4 mt-0'>MODERATOR PAGE</p>
                   <div>
                     <h2>Welcome, Moderator!</h2>
@@ -77,8 +77,8 @@ function Home() {
 
           {user.role.toLowerCase() === 'admin' && (
             <section id="admin">
-              <div className='px-5 p-5 bg-danger-subtle'>
-                <div className='text-start mx-5 p-5 pt-2 border border-dark rounded'>
+              <div className='px-5 p-5'>
+                <div className='text-start mx-5 p-5 pt-2 border border-dark rounded bg-danger-subtle'>
                   <p className='fw-bold text-center text-danger mb-4 mt-0'>ADMIN PAGE</p>
                   <div>
                     <h2>Welcome, Administrator!</h2>
