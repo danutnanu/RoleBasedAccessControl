@@ -31,7 +31,7 @@ function Navigation() {
         <a className="badge text-bg-light text-wrap fst-italic p-1 border border-info">RBAC</a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="my-1" onClick={() => setExpanded(!expanded)} />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end text-center me-3">
-          <Nav className="p-0 w-100 justify-content-center align-items-center">
+          <Nav className="p-0 w-100 align-items-center justify-content-md-end">
             <Nav.Link as={Link} to="/" onClick={handleLinkClick}>Home</Nav.Link>
             {!user ? (
               <Nav.Link as={Link} to="/login" onClick={handleLinkClick}>Login</Nav.Link>
