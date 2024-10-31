@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../App'; // Make sure this path is correct
+import { UserContext } from '../../App';
 import { ListGroup } from 'react-bootstrap';
 
 function Home() {
@@ -11,9 +11,24 @@ function Home() {
         <div className='mt-5 m-2 mx-md-5 p-lg-5'>
           <p className='h4 fw-bold text-center mb-2 rounded'>Role Based Access Control</p>
           <div className='text-start mx-0 p-3 pt-2 border border-dark rounded bg-light p-lg-5'>
-            <p className='fw-bold text-center text-success mb-4 mt-3'>"This content is visible to all, without any restrictions. The page is public and can be viewed without logging in."</p>
+            <p className='fw-bold text-center text-dark mb-4 mt-3'>
+              "This content is visible to all, without any restrictions. The page is public and can be viewed without logging in."
+            </p>
+            <p className='text-center'>
+              This project uses local storage for data persistence, without any database integration. Below are example credentials you can use to explore the role-based access control:
+            </p>
+            <ul className='text-center' style={{ listStyleType: 'none', padding: 0 }}>
+              <li><strong>Admin</strong> Email: alice@example.com, Password: password123</li>
+              <li><strong>Moderator</strong> Email: henry@example.com, Password: modpass2</li>
+              <li><strong>User</strong> Email: bob@example.com, Password: password456</li>
+            </ul>
+            <p className='text-center'>
+              This project demonstrates a Role-Based Access Control (RBAC) system using React and local storage. Users are managed through utility functions that handle operations such as adding, updating, and deleting user data.
+            </p>
             <p className='h6 fw-bold'>Project Overview</p>
-            <p className='text-start'>This project implements a Role-Based Access Control (RBAC) system using React. The system allows for managing user roles and controlling access to various parts of the application based on their assigned permissions.</p>
+            <p className='text-start'>
+              The system allows for managing user roles and controlling access to various parts of the application based on their assigned permissions.
+            </p>
             <p className='h6 fw-bold'>Technologies Used:</p>
             <ListGroup as="ol" numbered>
               <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
