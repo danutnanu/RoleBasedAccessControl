@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Container, Table, Dropdown, Button } from 'react-bootstrap';
 import { UserContext } from '../../App'; // Import UserContext
+import { useMessage } from '../Message'; // Import the useMessage hook
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]); // State to hold the list of users
   const { user, setUser } = useContext(UserContext); // Use context to get/set current user
+  const { showMessage } = useMessage(); // Get the showMessage function from context
 
   // Function to fetch users from local storage
   const fetchUsers = () => {
@@ -34,6 +36,9 @@ const ManageUsers = () => {
       setUser(updatedUser);
       localStorage.setItem('currentUser', JSON.stringify(updatedUser));
     }
+
+    const updatedUser = users.find(user => user.id === userId);
+    showMessage(`${updatedUser.firstName || updatedUser.email.split('@')[0]}'s role was changed to ${capitalizeRole(newRole)}.`, 'info');
   };
 
   // Function to handle user deletion
