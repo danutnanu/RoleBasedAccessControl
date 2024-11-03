@@ -43,7 +43,7 @@ const Register = () => {
     }
 
     // Register the user
-    const newUser = { id: Date.now(), email, password, role: 'user' }; // Add a unique ID and role
+    const newUser = { id: Date.now(), email, password, role: 'User' }; // Add a unique ID and role
     addUser(newUser); // Use the addUser function to add the new user
     showMessage('Registration successful!', 'success');
 
