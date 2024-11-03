@@ -67,11 +67,6 @@ const Register = () => {
     setConfirmPassword(''); // Reset to an empty string
   };
 
-  // useEffect to log the state whenever it changes
-  useEffect(() => {
- 
-  }, [email, password, confirmPassword]); // Log whenever any of these fields change
-
   return (
     <Container fluid className="d-flex align-items-center justify-content-center vh-100">
       <Row className="justify-content-center w-100">
