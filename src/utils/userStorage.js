@@ -1,14 +1,14 @@
 const USER_DATA_VERSION = '1.1'; // Increment this when you update user data
 
 const initialUsers = [
-  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', password: 'password123', role: 'admin' },
-  { id: 2, name: 'Bob Smith', email: 'bob@example.com', password: 'password456', role: 'user' },
-  { id: 3, name: 'Charlie Brown', email: 'charlie@example.com', password: 'password789', role: 'user' },
-  { id: 4, name: 'Diana Ross', email: 'diana@example.com', password: 'password101', role: 'user' },
-  { id: 5, name: 'Ethan Hunt', email: 'ethan@example.com', password: 'password202', role: 'user' },
-  { id: 6, name: 'Frank Castle', email: 'frank@example.com', password: 'adminpass1', role: 'admin' },
-  { id: 7, name: 'Grace Hopper', email: 'grace@example.com', password: 'modpass1', role: 'moderator' },
-  { id: 8, name: 'Henry Ford', email: 'henry@example.com', password: 'modpass2', role: 'moderator' }
+  { id: 1, email: 'alice@example.com', password: 'password123', role: 'Admin' },
+  { id: 2, email: 'bob@example.com', password: 'password456', role: 'User' },
+  { id: 3, email: 'charlie@example.com', password: 'password789', role: 'User' },
+  { id: 4, email: 'diana@example.com', password: 'password101', role: 'User' },
+  { id: 5, email: 'ethan@example.com', password: 'password202', role: 'User' },
+  { id: 6, email: 'frank@example.com', password: 'adminpass1', role: 'Admin' },
+  { id: 7, email: 'grace@example.com', password: 'modpass1', role: 'Moderator' },
+  { id: 8, email: 'henry@example.com', password: 'modpass2', role: 'Moderator' }
 ];
 
 export const initializeUsers = () => {
