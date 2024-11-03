@@ -69,7 +69,7 @@ const Register = () => {
 
   // useEffect to log the state whenever it changes
   useEffect(() => {
-    console.log('Current fields:', { email, password, confirmPassword });
+ 
   }, [email, password, confirmPassword]); // Log whenever any of these fields change
 
   return (

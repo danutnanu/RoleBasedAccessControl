@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../App'; // Adjust the path as needed
+import { UserContext } from '../App'; 
 
 function Navigation() {
   const [expanded, setExpanded] = useState(false);
@@ -22,12 +22,9 @@ function Navigation() {
     setExpanded(false); // Close the navbar
   };
 
-  console.log('Current user in Navbar:', user);
-
   return (
     <Navbar expanded={expanded} onToggle={() => setExpanded(!expanded)} expand="md" className="navbar fixed-top bg-body-tertiary bg-dark-subtle mt-0 mx-0 p-0">
       <Container>
-        {/* <img src="/public/favicon.ico" alt="logo" width="30" height="24" className="d-inline-block align-text-top m-1" /> */}
         <a className="badge text-bg-light text-wrap fst-italic p-1 border border-info">RBAC</a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="my-1" onClick={() => setExpanded(!expanded)} />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end text-center me-3">

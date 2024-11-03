@@ -20,7 +20,6 @@ function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('Current user in state:', user);
     // Load user data from local storage when the component mounts
     if (user) {
       setFirstName(user.firstName || ''); // Set to empty string if undefined
@@ -55,7 +54,6 @@ function Profile() {
 
       // Save updated user data to local storage
       localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-      console.log('Updated user saved to localStorage:', updatedUser);
 
       // Update the user context state
       setUser(updatedUser); // Update the context state with the new user data

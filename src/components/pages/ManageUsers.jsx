@@ -29,7 +29,6 @@ const ManageUsers = () => {
       const updatedUser = { ...user, role: newRole };
       setUser(updatedUser);
       localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-      console.log('Updated user:', updatedUser);
     }
   };
 

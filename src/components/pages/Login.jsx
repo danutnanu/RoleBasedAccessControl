@@ -8,31 +8,28 @@ import Col from 'react-bootstrap/Col';
 import { getUsers } from '../../utils/userStorage';
 import { useMessage } from '../Message';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../App'; // Import UserContext from App.jsx
+import { UserContext } from '../../App'; 
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { showMessage } = useMessage();
-  const { setUser } = useContext(UserContext); // Correctly use setUser from context
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const users = getUsers();
-    console.log('Users retrieved from localStorage:', users);
 
     const user = users.find(u => u.email === email && u.password === password);
 
     if (user) {
-      console.log('Login successful', user);
       showMessage('Login successful', 'success');
       localStorage.setItem('currentUser', JSON.stringify(user));
       setUser(user);
       navigate('/');
     } else {
-      console.log('Login failed');
       showMessage('Invalid email or password', 'error');
     }
   };
