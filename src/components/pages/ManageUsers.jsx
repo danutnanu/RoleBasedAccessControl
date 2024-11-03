@@ -23,6 +23,10 @@ const ManageUsers = () => {
     fetchUsers(); // Call the function to fetch users
   }, []);
 
+  const capitalizeName = (name) => {
+    return name.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
+  };
+
   // Function to handle role change
   const handleRoleChange = (userId, newRole) => {
     const updatedUsers = users.map(user => 
@@ -38,7 +42,8 @@ const ManageUsers = () => {
     }
 
     const updatedUser = users.find(user => user.id === userId);
-    showMessage(`${updatedUser.firstName || updatedUser.email.split('@')[0]}'s role was changed to ${capitalizeRole(newRole)}.`, 'info');
+    const userName = updatedUser.firstName ? capitalizeName(updatedUser.firstName) : capitalizeName(updatedUser.email.split('@')[0]);
+    showMessage(`${userName}'s role was changed to ${capitalizeRole(newRole)}.`, 'info');
   };
 
   // Function to handle user deletion
