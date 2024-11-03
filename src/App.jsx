@@ -24,10 +24,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-   
-  }, [user]);
-
   return (
     <AuthProvider>
       <UserContext.Provider value={{ user, setUser }}>
