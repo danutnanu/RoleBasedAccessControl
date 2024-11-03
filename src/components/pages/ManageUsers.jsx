@@ -9,7 +9,11 @@ const ManageUsers = () => {
   // Function to fetch users from local storage
   const fetchUsers = () => {
     const storedUsers = JSON.parse(localStorage.getItem('users')) || []; // Get users from local storage
-    setUsers(storedUsers); // Update state with the users
+    const updatedUsers = storedUsers.map(user => ({
+      ...user,
+      role: capitalizeRole(user.role) // Capitalize role
+    }));
+    setUsers(updatedUsers); // Update state with the users
   };
 
   // useEffect to fetch users when the component mounts
@@ -20,13 +24,13 @@ const ManageUsers = () => {
   // Function to handle role change
   const handleRoleChange = (userId, newRole) => {
     const updatedUsers = users.map(user => 
-      user.id === userId ? { ...user, role: newRole } : user
+      user.id === userId ? { ...user, role: capitalizeRole(newRole) } : user
     );
     setUsers(updatedUsers);
     localStorage.setItem('users', JSON.stringify(updatedUsers));
 
     if (user && user.id === userId) {
-      const updatedUser = { ...user, role: newRole };
+      const updatedUser = { ...user, role: capitalizeRole(newRole) };
       setUser(updatedUser);
       localStorage.setItem('currentUser', JSON.stringify(updatedUser));
     }
@@ -37,6 +41,10 @@ const ManageUsers = () => {
     const updatedUsers = users.filter(user => user.id !== userId);
     setUsers(updatedUsers);
     localStorage.setItem('users', JSON.stringify(updatedUsers)); // Update local storage
+  };
+
+  const capitalizeRole = (role) => {
+    return role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
   };
 
   return (
@@ -61,7 +69,7 @@ const ManageUsers = () => {
               <td>
                 <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic" size="sm" className="w-100">
-                    {user.role}
+                    {capitalizeRole(user.role)}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item onClick={() => handleRoleChange(user.id, 'User')}>User</Dropdown.Item>
