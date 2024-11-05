@@ -56,7 +56,7 @@ function Profile() {
       localStorage.setItem('currentUser', JSON.stringify(updatedUser));
 
       // Update the user context state
-      setUser(updatedUser); // Update the context state with the new user data
+      setUser(updatedUser);
 
       showMessage('Profile updated successfully!', 'success');
     }
@@ -79,7 +79,9 @@ function Profile() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  Please provide a first name.
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} controlId="lastName">
                 <Form.Label>Last name</Form.Label>
@@ -90,34 +92,28 @@ function Profile() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  Please provide a last name.
+                </Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Form.Group className="mb-3" controlId="city">
-              <Form.Label>City</Form.Label>
+              <Form.Label>City (optional)</Form.Label>
               <Form.Control 
                 type="text" 
                 placeholder="City" 
-                required 
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid city.
-              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="country">
-              <Form.Label>Country</Form.Label>
+              <Form.Label>Country (optional)</Form.Label>
               <Form.Control 
                 type="text" 
                 placeholder="Country" 
-                required 
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
               />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid country.
-              </Form.Control.Feedback>
             </Form.Group>
             <div className="d-grid gap-2">
               <Button variant="primary" type="submit">
