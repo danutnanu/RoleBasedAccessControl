@@ -71,28 +71,30 @@ const ManageUsers = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
-              <td>{user.firstName} {user.lastName}</td>
-              <td>{user.email}</td>
-              <td>
-                <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic" size="sm" className="w-100">
-                    {capitalizeRole(user.role)}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => handleRoleChange(user.id, 'User')}>User</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleRoleChange(user.id, 'Moderator')}>Moderator</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleRoleChange(user.id, 'Admin')}>Admin</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </td>
-              <td>
-                <Button variant="danger" size="sm" onClick={() => handleDeleteUser(user.id)}>Delete</Button>
-              </td>
-            </tr>
-          ))}
+          {users
+            .filter(u => u.id !== user.id) // Filter out the logged-in admin
+            .map((user, index) => (
+              <tr key={user.id}>
+                <td>{index + 1}</td>
+                <td>{user.firstName} {user.lastName}</td>
+                <td>{user.email}</td>
+                <td>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" size="sm" className="w-100">
+                      {capitalizeRole(user.role)}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => handleRoleChange(user.id, 'User')}>User</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleRoleChange(user.id, 'Moderator')}>Moderator</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleRoleChange(user.id, 'Admin')}>Admin</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </td>
+                <td>
+                  <Button variant="danger" size="sm" onClick={() => handleDeleteUser(user.id)}>Delete</Button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </Container>
