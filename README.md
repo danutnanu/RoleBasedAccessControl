@@ -1,6 +1,6 @@
-# React + Vite Role-Based Access Control
+# React + Vite
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR_BADGE_ID/deploy-status)](https://app.netlify.com/sites/rolebasedaccesscontrol/deploys)
+ Role-Based Access Control
 
 ## Overview
 
