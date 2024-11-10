@@ -54,4 +54,5 @@ To run this project locally, follow these steps:
 
 ## Contact
 
-For any questions or feedback, please contact [your-email@example.com](mailto:your-email@example.com).
+Feel free to reach out via [email](mailto:danutnanu@icloud.com) or [LinkedIn](https://www.linkedin.com/in/danut-nanu-7474b4267/).
+
