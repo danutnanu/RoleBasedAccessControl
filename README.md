@@ -44,7 +44,7 @@ To run this project locally, follow these steps:
 
 4. **Open your browser:**
 
-   Navigate to `http://localhost:3000` to see the application in action.
+  Open your browser and go to your localhost to see your project running.
 
 ## Technologies Used
 
