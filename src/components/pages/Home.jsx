@@ -80,9 +80,9 @@ function Home() {
               This project uses local storage for data persistence, without any database integration. Below are example credentials you can use to explore the role-based access control:
             </p>
             <ul className='text-center' style={{ listStyleType: 'none', padding: 0 }}>
-              <li><strong>Admin</strong> Email: alice@example.com, Password: password123</li>
-              <li><strong>Moderator</strong> Email: henry@example.com, Password: modpass2</li>
               <li><strong>User</strong> Email: bob@example.com, Password: password456</li>
+              <li><strong>Moderator</strong> Email: henry@example.com, Password: modpass2</li>
+              <li><strong>Admin</strong> Email: alice@example.com, Password: password123</li>
             </ul>
             <p className='text-center'>
               This project demonstrates a Role-Based Access Control (RBAC) system using React and local storage. Users are managed through utility functions that handle operations such as adding, updating, and deleting user data.
