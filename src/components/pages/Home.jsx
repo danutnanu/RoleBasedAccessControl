@@ -26,7 +26,7 @@ function Home() {
           <p className='fw-bold text-center text-danger mb-4 mt-0'>USER PAGE</p>
           <div>
             <h2>Welcome, User!</h2>
-            <p>You are logged in with a user ID. You now have access to the Home page and your User page.</p>
+            <p>You've successfully logged in and now have access to the Home page and your User page.</p>
             <p>Feel free to explore the features available to you. If you need any assistance, don't hesitate to reach out.</p>
             {user.role.toLowerCase() === 'user' && renderProfileAndActivity()}
           </div>
