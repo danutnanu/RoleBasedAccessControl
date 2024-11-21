@@ -70,9 +70,9 @@ function Home() {
   return (
     <div>
       <section id="home">
-        <div className='mt-5 m-2 mx-md-5 p-lg-5'>
+        <div className='mt-5 mx-md-5 p-lg-5'>
           <p className='h4 fw-bold text-center mb-2 rounded'>Role Based Access Control</p>
-          <div className='text-start mx-0 p-3 pt-2 border border-dark rounded bg-light p-lg-5'>
+          <div className='text-start mx-0 p-3 pt-2 border border-dark rounded bg-secondary-subtle p-lg-5'>
             <p className='fw-bold text-center text-success mb-4 mt-3'>
               "This content is visible to all, without any restrictions. The page is public and can be viewed without logging in."
             </p>
