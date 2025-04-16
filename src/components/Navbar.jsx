@@ -37,7 +37,7 @@ function Navigation() {
   };
 
   return (
-    <Navbar expanded={expanded} onToggle={() => setExpanded(!expanded)} expand="md" className="navbar fixed-top bg-body-tertiary bg-dark-subtle mt-0 mx-0 p-0">
+    <Navbar expanded={expanded} onToggle={() => setExpanded(!expanded)} expand="md" className="navbar fixed-top mt-0 mx-0 p-0">
       <Container>
         <a className="badge text-bg-light text-wrap fst-italic p-1 border border-info">RBAC</a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="my-1" onClick={() => setExpanded(!expanded)} />
