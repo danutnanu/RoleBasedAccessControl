@@ -8,7 +8,7 @@ import { UserContext } from '../App';
 
 function Navigation() {
   const [expanded, setExpanded] = useState(false);
-  const { user, setUser } = useContext(UserContext); // Access the user context
+  const { user, setUser } = useContext(UserContext); 
   const navigate = useNavigate();
 
   const handleLinkClick = () => {
@@ -16,10 +16,10 @@ function Navigation() {
   };
 
   const handleLogout = () => {
-    setUser(null); // Clear the user context
-    localStorage.removeItem('currentUser'); // Remove user from local storage
-    navigate('/'); // Redirect to home page
-    setExpanded(false); // Close the navbar
+    setUser(null); 
+    localStorage.removeItem('currentUser'); 
+    navigate('/'); 
+    setExpanded(false); 
   };
 
   const capitalize = (str) => {
