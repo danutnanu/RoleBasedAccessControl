@@ -43,18 +43,18 @@ function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="my-1" onClick={() => setExpanded(!expanded)} />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end text-center me-3">
           <Nav className="p-0 w-100 align-items-center justify-content-md-end">
-            <Nav.Link as={Link} to="/" onClick={handleLinkClick}>Home</Nav.Link>
+            <Nav.Link as={Link} to="/" onClick={handleLinkClick} className='fw-bold'>Home</Nav.Link>
             {!user ? (
-              <Nav.Link as={Link} to="/login" onClick={handleLinkClick}>Login</Nav.Link>
+              <Nav.Link as={Link} to="/login" onClick={handleLinkClick} className='fw-bold'>Login</Nav.Link>
             ) : (
               <>
-                <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>Profile</Nav.Link>
+                <Nav.Link as={Link} to="/profile" onClick={handleLinkClick} className='fw-bold'>Profile</Nav.Link>
                 {user.role.toLowerCase() === 'admin' && (
-                  <Nav.Link as={Link} to="/manageusers" onClick={handleLinkClick}>Manage Users</Nav.Link>
+                  <Nav.Link as={Link} to="/manageusers" onClick={handleLinkClick} className='fw-bold'>Manage Users</Nav.Link>
                 )}
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className='fw-bold'>Logout</Nav.Link>
                 <div className="d-none d-md-inline mx-3"></div> {/* Gap for larger screens */}
-                <span className="navbar-text">Hi, {getDisplayName()}!</span>
+                <span className="navbar-text fw-bold">Hi, {getDisplayName()}!</span>
               </>
             )}
           </Nav>
