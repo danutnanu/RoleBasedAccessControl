@@ -39,20 +39,20 @@ function Navigation() {
   return (
     <Navbar expanded={expanded} onToggle={() => setExpanded(!expanded)} expand="md" className="navbar fixed-top mt-0 mx-0 p-0">
       <Container>
-        <a className="badge nav-link text-bg-light fw-bold p-1 border border-info">🪬 RBAC</a>
+        <a className="badge nav-link text-bg-light fw-bold p-1 border border-1 border-dark rounded-pill">🪬 RBAC</a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="my-1" onClick={() => setExpanded(!expanded)} />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end text-center me-3">
           <Nav className="p-0 w-100 align-items-center justify-content-md-end">
-            <Nav.Link as={Link} to="/" onClick={handleLinkClick} className='nav-link fw-bold py-0 px-3 my-2 mx-1 border border-1 border-dark rounded-pill'>🏠 Home</Nav.Link>
+            <Nav.Link as={Link} to="/" onClick={handleLinkClick} className='nav-link fw-bold py-0 px-2 my-2 mx-1 border border-1 border-dark rounded-pill'>🏠 Home</Nav.Link>
             {!user ? (
-              <Nav.Link as={Link} to="/login" onClick={handleLinkClick} className='fw-bold py-0 px-3 my-2 mx-1 border border-1 border-dark rounded-pill'>🔐 Login</Nav.Link>
+              <Nav.Link as={Link} to="/login" onClick={handleLinkClick} className='fw-bold py-0 px-2 my-2 mx-1 border border-1 border-dark rounded-pill'>🔐 Login</Nav.Link>
             ) : (
               <>
-                <Nav.Link as={Link} to="/profile" onClick={handleLinkClick} className='fw-bold py-0 px-3 my-2 mx-1 border border-1 border-dark rounded-pill'>🤦🏻‍♂️ Profile</Nav.Link>
+                <Nav.Link as={Link} to="/profile" onClick={handleLinkClick} className='fw-bold py-0 px-2 my-2 mx-1 border border-1 border-dark rounded-pill'>🤦🏻‍♂️ Profile</Nav.Link>
                 {user.role.toLowerCase() === 'admin' && (
-                  <Nav.Link as={Link} to="/manageusers" onClick={handleLinkClick} className='fw-bold py-0 px-3 my-2 mx-1 border border-1 border-dark rounded-pill'>👥🛠️ Manage Users</Nav.Link>
+                  <Nav.Link as={Link} to="/manageusers" onClick={handleLinkClick} className='fw-bold py-0 px-2 my-2 mx-1 border border-1 border-dark rounded-pill'>👥🛠️ Manage Users</Nav.Link>
                 )}
-                <Nav.Link onClick={handleLogout} className='fw-bold py-0 px-3 my-2 mx-1 border border-1 border-dark rounded-pill'>👋🏻 Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className='fw-bold py-0 px-2 my-2 mx-1 border border-1 border-dark rounded-pill'>👋🏻 Logout</Nav.Link>
                 <div className="d-none d-md-inline ms-3"></div> {/* Gap for larger screens */}
                 <span className="nav-link fw-bold py-0 px-2 my-2 ms-1 border border-1 border-dark rounded-pill">Hi, {getDisplayName()}!</span>
               </>
