@@ -1,3 +1,8 @@
 .navbar {
-  background-color: #a29eb6;
+  background-color: #bab8cb;
+}
+
+.nav-link {
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3); 
+
 }
