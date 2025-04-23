@@ -71,7 +71,7 @@ function Home() {
   return (
     <div>
       <section id="home">
-        <div className='mt-5 pt-3 mx-md-5 p-lg-4'>
+        <div className='mt-5 mx-2 pt-3 mx-md-5 p-lg-5'>
         <p className='h4 fw-bold text-center mb-5'><span className='border-bottom border-2 border-dark'>Role Based Access Control</span></p>
           <div className='home-page mx-0 p-3 pt-2 border border-dark rounded p-lg-5'>
             <p className='fw-bold fs-5 text-center text-bold mb-4 mt-3'>
