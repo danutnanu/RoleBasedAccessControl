@@ -39,8 +39,8 @@ function Navigation() {
   return (
     <Navbar expanded={expanded} onToggle={() => setExpanded(!expanded)} expand="md" className="navbar fixed-top mt-0 mx-0 p-0">
       <Container>
-        <a className="badge nav-link text-bg-light fw-bold p-1 border border-1 border-dark rounded-pill">🪬 RBAC</a>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="my-1" onClick={() => setExpanded(!expanded)} />
+        <a className="badge nav-link text-bg-light fw-bold p-2 my-2 border border-1 border-dark rounded-pill">🪬 RBAC</a>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="my-2" onClick={() => setExpanded(!expanded)} />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end text-center me-3">
           <Nav className="p-0 w-100 align-items-center justify-content-md-end">
             <Nav.Link as={Link} to="/" onClick={handleLinkClick} className='nav-link fw-bold py-0 px-2 my-2 mx-1 border border-1 border-dark rounded-pill'>🏠 Home</Nav.Link>
