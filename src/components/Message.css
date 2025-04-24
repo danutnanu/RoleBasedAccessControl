@@ -35,4 +35,5 @@
 .message.info {
   background-color: #ceeff4; 
   color: rgb(49, 91, 126);
+  border-left: 6px solid #230a5b;
 }
